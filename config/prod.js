@@ -7,5 +7,6 @@ module.exports={
   mongoURL: process.env.MONGO_URI,
   //"mongodb://<dbuser>:<dbpassword>@ds121015.mlab.com:21015/survey-prod",
   cookieKey: process.env.COOKIE_KEY
+
 }
 
