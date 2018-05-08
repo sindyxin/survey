@@ -1,8 +1,17 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap/dist/css/bootstrap-grid.min.css"
+import React from "react";
+import ReactDom from "react-dom";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware } from "redux";
+import reduxThunk from "redux-thunk";
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+import App from "./components/App";
+import reducers from "./reducers";
+
+const store = createStore(reducers, {}, applyMiddleware(reduxThunk));
+
+ReactDom.render(
+  <Provider store={store}><App /></Provider>, 
+  document.querySelector('#root')
+);
