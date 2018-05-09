@@ -26,27 +26,6 @@ passport.use(
       callbackURL: "/auth/google/callback",
       proxy: true
     },
-    // (accessToken, refreshToken, profile, done) => {
-    //   console.log("accessToken", accessToken);
-    //   console.log("refreshToken", refreshToken);
-    //   console.log("profile", profile);
-    //   User.findOne({googleId: profile.id})
-    //     .then((existingUser)=>{
-    //       if(existingUser){
-    //         // We find this user already register
-    //         done(null, existingUser);
-    //       }else{
-    //         //  we don't find and make new user in database
-    //         new User({
-    //           googleId: profile.id,
-    //           userName: profile.displayName
-    //         }).save().then((user)=>{
-    //           done(bull, user);
-    //         });
-    //       }
-    //     })
-
-    // }
     async (accessToken, refreshToken, profile, done) => {
       console.log("accessToken", accessToken);
       console.log("refreshToken", refreshToken);

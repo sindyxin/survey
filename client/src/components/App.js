@@ -1,6 +1,8 @@
-import React from "react";
+import React, { Component} from "react";
 // using ES6 modules
-import { BrowserRouter, Route } from 'react-router-dom'
+import { BrowserRouter, Route } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../actions";
 
 //BrowserRouter thought as the brains of react-router is the thing that tell react-router how to behave is the thing that looks at the current URL and then change a set of components that are visible on the screen at any given time.
 
@@ -11,26 +13,32 @@ import { BrowserRouter, Route } from 'react-router-dom'
 
 // const Header = ()=> <h2>Header</h2>
 import Header from "./Header";
+import Landing from "./Landing";
 
 const Dashboard = ()=> <h2>Dashboard</h2>
 
 const SurveyNew = ()=> <h1>SurveyNew</h1>
 
-const Landing = ()=> <h2>Landing</h2>
 
-const App = ()=>{
-  return (
-    <div>
-      <BrowserRouter>
+// const App = ()=>{
+  class App extends Component {
+    componentDidMount(){
+      this.props.fetchUser();
+    }
+    render(){
+      return (
         <div>
-          <Header />
-          <Route exact path="/" component={Landing}/>
-          <Route exact path="/surveys" component={Dashboard}/>
-          <Route path="/surveys/new" component={SurveyNew}/>
+          <BrowserRouter>
+            <div>
+              <Header />
+              <Route exact path="/" component={Landing}/>
+              <Route exact path="/surveys" component={Dashboard}/>
+              <Route path="/surveys/new" component={SurveyNew}/>
+            </div>
+          </BrowserRouter>
         </div>
-      </BrowserRouter>
-    </div>
-  );
+      );
+    }  
 };
 
-export default App;
+export default connect(null, actions) (App);
